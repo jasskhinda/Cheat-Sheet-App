@@ -1,8 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0d1117;
+  --foreground: #e6edf3;
+  --card-bg: #161b22;
+  --card-border: #30363d;
+  --accent-green: #00d632;
+  --accent-blue: #1a90ff;
+  --accent-orange: #ff6b00;
+  --text-muted: #8b949e;
 }
 
 @theme inline {
@@ -12,15 +18,67 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--card-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #1a90ff 0%, #00d632 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow effects */
+.glow-green {
+  box-shadow: 0 0 20px rgba(0, 214, 50, 0.3);
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(26, 144, 255, 0.3);
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Table styles */
+.player-table tr:hover {
+  background: rgba(26, 144, 255, 0.1);
+}
+
+/* Position colors */
+.pos-qb { color: #ff6b6b; }
+.pos-rb { color: #4ecdc4; }
+.pos-wr { color: #45b7d1; }
+.pos-te { color: #f9ca24; }
+.pos-k { color: #a55eea; }
+.pos-def { color: #fd9644; }
