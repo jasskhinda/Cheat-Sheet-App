@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Cheat Sheet App - Fantasy Sports Companion",
-  description: "The ultimate fantasy sports companion. Get expert rankings, projections, and build winning lineups.",
+  title: "Cheat Sheet App - Connect with Top Sports Betting Handicappers",
+  description: "Where sports betting aficionados share valuable tips to boost your success. Connect with experienced handicappers and increase your odds.",
 };
 
 export default function RootLayout({
@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0d1117] text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900`}
       >
         <Navbar />
         <main className="pt-16 min-h-screen">

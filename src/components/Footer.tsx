@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0d1117] border-t border-[#30363d] py-12">
+    <footer className="bg-white border-t border-gray-200 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
@@ -16,45 +16,45 @@ export default function Footer() {
                 height={36}
                 className="rounded-lg"
               />
-              <span className="font-bold text-lg">
-                <span className="text-white">Cheat Sheet</span>
-                <span className="text-[#1a90ff]"> App</span>
+              <span className="font-bold text-lg text-gray-900">
+                Cheat Sheet App
               </span>
             </Link>
-            <p className="text-[#8b949e] text-sm max-w-md">
-              The ultimate fantasy sports companion. Get expert rankings,
-              projections, and build winning lineups with our advanced tools.
+            <p className="text-gray-500 text-sm max-w-md">
+              Where sports betting aficionados share valuable tips to boost your success.
+              Connect with top handicappers and take your game to the next level.
             </p>
           </div>
 
-          {/* Links */}
+          {/* Platform Links */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Product</h4>
-            <ul className="space-y-2 text-sm text-[#8b949e]">
-              <li><Link href="/cheatsheet" className="hover:text-white transition-colors">Cheat Sheets</Link></li>
-              <li><Link href="/lineup" className="hover:text-white transition-colors">Lineup Builder</Link></li>
-              <li><Link href="/rankings" className="hover:text-white transition-colors">Rankings</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Projections</Link></li>
+            <h4 className="font-semibold text-gray-900 mb-4">Platform</h4>
+            <ul className="space-y-2 text-sm text-gray-500">
+              <li><Link href="/connect" className="hover:text-gray-900 transition-colors">Find Handicappers</Link></li>
+              <li><Link href="/become" className="hover:text-gray-900 transition-colors">Become a Handicapper</Link></li>
+              <li><Link href="/featured" className="hover:text-gray-900 transition-colors">Featured</Link></li>
+              <li><Link href="#" className="hover:text-gray-900 transition-colors">Rankings</Link></li>
             </ul>
           </div>
 
+          {/* Company Links */}
           <div>
-            <h4 className="font-semibold text-white mb-4">Company</h4>
-            <ul className="space-y-2 text-sm text-[#8b949e]">
-              <li><Link href="#" className="hover:text-white transition-colors">About</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Contact</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Privacy</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Terms</Link></li>
+            <h4 className="font-semibold text-gray-900 mb-4">Company</h4>
+            <ul className="space-y-2 text-sm text-gray-500">
+              <li><Link href="#" className="hover:text-gray-900 transition-colors">About</Link></li>
+              <li><Link href="#" className="hover:text-gray-900 transition-colors">Contact</Link></li>
+              <li><Link href="#" className="hover:text-gray-900 transition-colors">Privacy</Link></li>
+              <li><Link href="#" className="hover:text-gray-900 transition-colors">Terms</Link></li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-[#30363d] flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-[#8b949e]">
-            © 2024 Cheat Sheet App. All rights reserved.
+        <div className="mt-8 pt-8 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-gray-500">
+            &copy; {new Date().getFullYear()} Cheat Sheet App. All rights reserved.
           </p>
-          <div className="flex items-center gap-4 text-sm text-[#8b949e]">
-            <span>Made for fantasy sports enthusiasts</span>
+          <div className="flex items-center gap-4 text-sm text-gray-500">
+            <span>Connecting handicappers with the world</span>
           </div>
         </div>
       </div>

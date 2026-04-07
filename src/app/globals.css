@@ -1,14 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0d1117;
-  --foreground: #e6edf3;
-  --card-bg: #161b22;
-  --card-border: #30363d;
-  --accent-green: #00d632;
-  --accent-blue: #1a90ff;
-  --accent-orange: #ff6b00;
-  --text-muted: #8b949e;
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --card-bg: #ffffff;
+  --card-border: #d1d5db;
+  --accent-blue: #2c5282;
+  --text-muted: #6b7280;
 }
 
 @theme inline {
@@ -31,33 +29,21 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--card-bg);
+  background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--card-border);
+  background: #c0c0c0;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+  background: #999;
 }
 
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #1a90ff 0%, #00d632 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Glow effects */
-.glow-green {
-  box-shadow: 0 0 20px rgba(0, 214, 50, 0.3);
-}
-
-.glow-blue {
-  box-shadow: 0 0 20px rgba(26, 144, 255, 0.3);
+/* Section divider */
+.section-divider {
+  border-top: 2px solid #1a1a1a;
 }
 
 /* Card hover effect */
@@ -67,18 +53,26 @@ body {
 
 .card-hover:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Table styles */
-.player-table tr:hover {
-  background: rgba(26, 144, 255, 0.1);
+/* Outlined button style matching mockup */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 40px;
+  border: 2px solid #1a1a1a;
+  border-radius: 16px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* Position colors */
-.pos-qb { color: #ff6b6b; }
-.pos-rb { color: #4ecdc4; }
-.pos-wr { color: #45b7d1; }
-.pos-te { color: #f9ca24; }
-.pos-k { color: #a55eea; }
-.pos-def { color: #fd9644; }
+.btn-outline:hover {
+  background: #f5f5f5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
