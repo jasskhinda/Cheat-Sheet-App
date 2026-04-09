@@ -43,6 +43,13 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  // Protect admin routes
+  if (request.nextUrl.pathname.startsWith('/admin') && !user) {
+    const url = request.nextUrl.clone();
+    url.pathname = '/signin';
+    return NextResponse.redirect(url);
+  }
+
   // Redirect signed-in users away from signin
   if (request.nextUrl.pathname === '/signin' && user) {
     const url = request.nextUrl.clone();
@@ -54,5 +61,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/dashboard/:path*', '/feed/:path*', '/signin'],
+  matcher: ['/dashboard/:path*', '/feed/:path*', '/admin/:path*', '/signin'],
 };

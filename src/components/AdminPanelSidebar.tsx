@@ -6,41 +6,30 @@ import { usePathname, useRouter } from 'next/navigation';
 import {
   LayoutDashboard,
   Users,
-  TrendingUp,
-  Settings,
+  UserCheck,
   Target,
+  Settings,
   LogOut,
   ChevronLeft,
-  Rss,
   Shield,
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 
-const handicapperNav = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/dashboard/picks', label: 'My Picks', icon: Target },
-  { href: '/dashboard/followers', label: 'Followers', icon: Users },
-  { href: '/dashboard/stats', label: 'Stats & Analytics', icon: TrendingUp },
-  { href: '/dashboard/settings', label: 'Settings', icon: Settings },
+const adminNav = [
+  { href: '/admin', label: 'Overview', icon: LayoutDashboard },
+  { href: '/admin/handicappers', label: 'Handicappers', icon: UserCheck },
+  { href: '/admin/subscribers', label: 'Subscribers', icon: Users },
+  { href: '/admin/picks', label: 'All Picks', icon: Target },
+  { href: '/admin/settings', label: 'Settings', icon: Settings },
 ];
 
-const subscriberNav = [
-  { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { href: '/feed', label: 'My Feed', icon: Rss },
-  { href: '/connect', label: 'Find Handicappers', icon: Users },
-  { href: '/dashboard/settings', label: 'Settings', icon: Settings },
-];
-
-interface DashboardSidebarProps {
-  role: 'handicapper' | 'subscriber';
+interface AdminPanelSidebarProps {
   userName: string;
-  isAdmin?: boolean;
 }
 
-export default function DashboardSidebar({ role, userName, isAdmin }: DashboardSidebarProps) {
+export default function AdminPanelSidebar({ userName }: AdminPanelSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const navItems = role === 'handicapper' ? handicapperNav : subscriberNav;
 
   const handleSignOut = async () => {
     const supabase = createClient();
@@ -63,7 +52,9 @@ export default function DashboardSidebar({ role, userName, isAdmin }: DashboardS
           />
           <div>
             <span className="font-bold text-white text-sm">Cheat Sheet</span>
-            <span className="text-xs block text-gray-400 capitalize">{role} Panel</span>
+            <span className="text-xs block text-red-400 flex items-center gap-1">
+              <Shield className="w-3 h-3" /> Admin Panel
+            </span>
           </div>
         </Link>
       </div>
@@ -71,21 +62,21 @@ export default function DashboardSidebar({ role, userName, isAdmin }: DashboardS
       {/* User info */}
       <div className="px-4 py-3 border-b border-gray-700">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-bold">
+          <div className="w-8 h-8 rounded-full bg-red-600 flex items-center justify-center text-white text-sm font-bold">
             {userName.charAt(0).toUpperCase()}
           </div>
           <div>
             <div className="text-sm font-medium text-white truncate">{userName}</div>
-            <div className="text-xs text-gray-400 capitalize">{role}</div>
+            <div className="text-xs text-red-400">Administrator</div>
           </div>
         </div>
       </div>
 
       {/* Navigation */}
       <nav className="flex-1 p-4 space-y-1">
-        {navItems.map((item) => {
+        {adminNav.map((item) => {
           const isActive = pathname === item.href ||
-            (item.href !== '/dashboard' && pathname.startsWith(item.href));
+            (item.href !== '/admin' && pathname.startsWith(item.href));
 
           return (
             <Link
@@ -93,7 +84,7 @@ export default function DashboardSidebar({ role, userName, isAdmin }: DashboardS
               href={item.href}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                 isActive
-                  ? 'bg-blue-600 text-white'
+                  ? 'bg-red-600 text-white'
                   : 'text-gray-400 hover:text-white hover:bg-gray-800'
               }`}
             >
@@ -106,15 +97,6 @@ export default function DashboardSidebar({ role, userName, isAdmin }: DashboardS
 
       {/* Bottom section */}
       <div className="p-4 border-t border-gray-700 space-y-2">
-        {isAdmin && (
-          <Link
-            href="/admin"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-400 hover:text-white hover:bg-red-600/20 transition-colors"
-          >
-            <Shield className="w-5 h-5" />
-            Admin Panel
-          </Link>
-        )}
         <Link
           href="/"
           className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"

@@ -5,7 +5,7 @@ import Footer from './Footer';
 
 export default function FooterWrapper() {
   const pathname = usePathname();
-  const hideFooter = pathname.startsWith('/dashboard') || pathname.startsWith('/feed');
+  const hideFooter = pathname.startsWith('/dashboard') || pathname.startsWith('/feed') || pathname.startsWith('/admin');
 
   if (hideFooter) return null;
 

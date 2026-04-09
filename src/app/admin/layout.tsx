@@ -1,8 +1,8 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
-import DashboardSidebar from '@/components/AdminSidebar';
+import AdminPanelSidebar from '@/components/AdminPanelSidebar';
 
-export default async function DashboardLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -20,13 +20,15 @@ export default async function DashboardLayout({
     .eq('id', user.id)
     .single();
 
-  const role = profile?.role || 'subscriber';
-  const userName = profile?.full_name || user.email || 'User';
-  const isAdmin = profile?.is_admin || false;
+  if (!profile?.is_admin) {
+    redirect('/dashboard');
+  }
+
+  const userName = profile?.full_name || user.email || 'Admin';
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <DashboardSidebar role={role} userName={userName} isAdmin={isAdmin} />
+      <AdminPanelSidebar userName={userName} />
       <div className="ml-64">
         {children}
       </div>
