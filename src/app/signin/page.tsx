@@ -40,8 +40,11 @@ export default function SignInPage() {
       if (error) {
         setError(error.message);
       } else {
-        router.push('/dashboard');
-        router.refresh();
+        setMessage('Check your email to confirm your account, then sign in.');
+        setIsSignUp(false);
+        setEmail('');
+        setPassword('');
+        setFullName('');
       }
     } else {
       const { error } = await supabase.auth.signInWithPassword({
