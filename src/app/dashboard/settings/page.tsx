@@ -183,7 +183,48 @@ export default function SettingsPage() {
         >
           {saving ? 'Saving...' : 'Save Settings'}
         </button>
+
+        {/* Billing Section */}
+        <BillingSection />
       </div>
     </>
+  );
+}
+
+function BillingSection() {
+  const [loading, setLoading] = useState(false);
+
+  const handleManageBilling = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch('/api/stripe/portal', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        setLoading(false);
+      }
+    } catch {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 p-6 mt-6">
+      <h3 className="text-lg font-bold text-gray-900 mb-2">Billing & Subscription</h3>
+      <p className="text-sm text-gray-500 mb-4">
+        Manage your payment method, view invoices, and cancel or update your subscription.
+      </p>
+      <button
+        onClick={handleManageBilling}
+        disabled={loading}
+        className="px-5 py-2.5 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors disabled:opacity-50"
+      >
+        {loading ? '...' : 'Manage Billing'}
+      </button>
+    </div>
   );
 }
