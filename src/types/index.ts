@@ -4,6 +4,7 @@ export interface UserProfile {
   full_name: string;
   role: 'handicapper' | 'subscriber';
   avatar_url?: string;
+  stripe_customer_id?: string;
   created_at: string;
 }
 
@@ -22,6 +23,8 @@ export interface HandicapperProfile {
   is_featured: boolean;
   subscription_price: number;
   affiliate_platform?: string;
+  stripe_subscription_id?: string;
+  stripe_status?: 'active' | 'inactive' | 'past_due' | 'cancelled';
   created_at: string;
 }
 
@@ -45,6 +48,7 @@ export interface Subscription {
   subscriber_id: string;
   handicapper_id: string;
   status: 'active' | 'cancelled' | 'expired';
+  stripe_subscription_id?: string;
   created_at: string;
 }
 

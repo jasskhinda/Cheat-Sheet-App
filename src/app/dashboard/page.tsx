@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server';
 import { redirect } from 'next/navigation';
 import DashboardHeader from '@/components/AdminHeader';
+import BillingBanner from '@/components/BillingBanner';
 import { TrendingUp, Users, Target, DollarSign } from 'lucide-react';
 import Link from 'next/link';
 
@@ -34,6 +35,8 @@ async function HandicapperDashboard({ userId }: { userId: string }) {
     .eq('user_id', userId)
     .single();
 
+  const stripeStatus = handicapper?.stripe_status || 'inactive';
+
   const stats = {
     totalPicks: handicapper?.total_picks || 0,
     wins: handicapper?.wins || 0,
@@ -52,6 +55,7 @@ async function HandicapperDashboard({ userId }: { userId: string }) {
   return (
     <>
       <DashboardHeader title="Dashboard" subtitle="Welcome back! Here's your overview." />
+      <BillingBanner status={stripeStatus} />
       <div className="p-6">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
